@@ -21,7 +21,9 @@ public class NumberBreakDown_ {
     }
 
     private int[][] breakOf(int number) {
-        return null;
+        if(number > 0 && number < 10) return new int [][]{{number,0}};
+        if(number > 9) return new int [][]{{1,1}};
+        return new int[][]{};
     }
 
     @Parameterized.Parameters
@@ -29,8 +31,25 @@ public class NumberBreakDown_ {
         return new Object[][]{
                 {0, new int[][]{}},
                 {1, new int[][]{{1,0}}},
-                {10, new int [][]{{1,2}}}
+                {5, new int[][]{{5,0}}},
+                {10, new int [][]{{1,1}}}
         };
+    }
+
+    private int thousands(int number) {
+        return number/1000;
+    }
+
+    private int hundreds(int number) {
+        return (number%1000)/100;
+    }
+
+    private int tens(int number) {
+        return (number%100)/10;
+    }
+
+    private int ones(int number) {
+        return number%10;
     }
 
 }
