@@ -24,16 +24,11 @@ public class NumberBreakDown_ {
         //if (number >= 1000) return times(thousands(number), THOUSANDS) + times(hundreds(number), HUNDREDS);
         //if (number >= 100) return times(hundreds(number), HUNDREDS) + times(tens(number), TENS);
         //return times(tens(number), TENS) + times(ones(number), ONES);
-
-        if(number > 99) return new int[][] {{hundreds(number),2},{tens(number),1},{ones(number),0}};
-        if(number > 9) return new int[][]{{tens(number),1},{ones(number),0}};
+        if(number >= 1000) return new int[][] {{thousands(number),3},{hundreds(number),2},{tens(number),1},{ones(number),0}};
+        if(number >= 100) return new int[][] {{hundreds(number),2},{tens(number),1},{ones(number),0}};
+        if(number >= 10) return new int[][]{{tens(number),1},{ones(number),0}};
         if(number > 0) return new int [][]{{ones(number),0}};
         return new int[][]{};
-    }
-
-    private String times(int offset, String[] constants) {
-        if (offset == 0) return "";
-        return constants[offset-1];
     }
 
     @Parameterized.Parameters
@@ -44,15 +39,17 @@ public class NumberBreakDown_ {
                 {5, new int[][]{{5,0}}},
                 {10, new int [][]{{1,1},{0,0}}},
                 {25, new int [][]{{2,1},{5,0}}},
-                {100, new int [][]{{1,2},{0,1},{0,0}}}
+                {100, new int [][]{{1,2},{0,1},{0,0}}},
+                {236, new int [][]{{2,2},{3,1},{6,0}}},
+                {1000, new int [][]{{1,3},{0,2},{0,1},{0,0}}},
+                {1961, new int [][]{{1,3},{9,2},{6,1},{1,0}}}
         };
     }
 
-    /*
     private int thousands(int number) {
         return number/1000;
     }
-*/
+
     private int hundreds(int number) {
         return (number%1000)/100;
     }
